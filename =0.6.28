@@ -1,0 +1,10 @@
+Collecting distribute
+  Downloading distribute-0.7.3.zip (145kB)
+Collecting setuptools>=0.7 (from distribute)
+  Downloading setuptools-39.0.1-py2.py3-none-any.whl (569kB)
+Installing collected packages: setuptools, distribute
+  Found existing installation: setuptools 20.7.0
+    Not uninstalling setuptools at /usr/lib/python2.7/dist-packages, outside environment /usr
+  Running setup.py install for distribute: started
+    Running setup.py install for distribute: finished with status 'done'
+Successfully installed distribute-0.7.3 setuptools-39.0.1

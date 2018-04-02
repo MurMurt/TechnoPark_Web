@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block container %}
+    <div class="row justify-content-center">
+        <div class="col-9 settings">
+            <h4 class="card-title">Settings: {{ user.username }}</h4>
+            <form>
+                <fieldset class="form-group">
+                    <label for="exampleInputEmail1">Email address</label>
+                    <input type="email" class="form-control" id="exampleInputEmail1" placeholder="Email">
+                </fieldset>
+                <fieldset class="form-group">
+                    <label for="exampleInputlogin">Login</label>
+                    <input type="text" class="form-control" id="exampleInputLogin" placeholder="Login">
+                </fieldset>
+                <fieldset class="form-group">
+                    <label for="exampleInputName">NickName</label>
+                    <input type="text" class="form-control" id="exampleInputName" placeholder="NickName">
+                </fieldset>
+
+                <fieldset class="form-group">
+                    <label for="exampleInputFile">Upload avatar</label>
+                    <input type="file" class="form-control-file" id="exampleInputFile">
+                    <small class="text-muted">This is some placeholder block-level help text for the above input. It's a
+                        bit lighter and easily wraps to a new line.
+                    </small>
+                </fieldset>
+                <button  type="submit" class="btn btn-primary">Save</button>
+            </form>
+        </div>
+    </div>
+{% endblock %}

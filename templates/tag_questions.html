@@ -1,0 +1,63 @@
+{% extends "base.html" %}
+{% load static %}
+{% block container %}
+    <div class="row questions">
+        <a href="#">
+            <h4 class="navbar-text alert-link">Tag: Bender</h4>
+        </a>
+    </div>
+    <div class="row">
+        <div class="col-8">
+            {% if questions %}
+                {% for question in questions %}
+                    {%  include "question_item.html" %}
+                {% endfor %}
+            {% else %}
+                <h4 class="text-info"> Sailors have no questions </h4>
+            {% endif %}
+            <div class="pagination justify-content-center">
+                <span class="step-links">
+                {% if questions.has_previous %}
+                    <a class="btn btn-sm btn-outline-info" href="?page={{ questions.previous_page_number }}">
+                        <
+                    </a>
+                {% endif %}
+
+                    <span class="current">
+                    <a class="btn btn-sm btn-outline-info disabled" href="#">{{ questions.number }}</a>
+                </span>
+                <span>
+                    {% if questions.has_next %}
+                        <a class="btn btn-sm btn-outline-info" href="?page={{ questions.next_page_number }}">
+                    >
+                    </a>
+                    {% endif %}
+                </span>
+            </div>
+        </div>
+
+        <div class="col-4">
+            <div class="top-tags col-10">
+                <h3 class="card-title">Popular tags</h3>
+                <ul class="list-group">
+                    {% for tag in pop_tags %}
+                        <li class="list-group-item">
+                            <a class="card-link" href="#">{{ tag }}</a>
+                        </li>
+                    {% endfor %}
+                </ul>
+            </div>
+            <div class="top-users col-10">
+                <h3 class="card-title">Best members</h3>
+                <ul class="list-group">
+                    {% for user in top_users %}
+                        <li class="list-group-item">
+                            <a class="card-link" href="#">{{ user }}</a>
+                        </li>
+                    {% endfor %}
+                </ul>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}

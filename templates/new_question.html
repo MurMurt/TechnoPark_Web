@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+{% load static %}
+{% block container %}
+
+    <div class="row">
+        <div class="col-8 offset-1 new-question">
+            <h4 class="card-title">New Question</h4>
+            <form>
+                <fieldset class="form-group">
+                    <label for="InputTitle">Title</label>
+                    <input type="text" class="form-control" id="InputTitle" placeholder="Enter title">
+                </fieldset>
+
+                <fieldset class="form-group">
+                    <label for="Textarea">Text</label>
+                    <textarea class="form-control" id="Textarea" rows="5"></textarea>
+                </fieldset>
+
+                <fieldset class="form-group">
+                    <label for="InputTags">Title</label>
+                    <input type="text" class="form-control" id="InputTags" placeholder="Enter tags">
+                    <small class="text-muted">Enter tags separated by commas</small>
+                </fieldset>
+
+                <button type="submit" class="btn btn-success">Ask</button>
+            </form>
+        </div>
+    </div>
+{% endblock %}
