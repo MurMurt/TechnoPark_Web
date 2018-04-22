@@ -30,7 +30,33 @@ def base_view(request):
     return render_to_response('index.html', {"questions": questions,
                                              "pop_tags": ["pop_tag1", "pop_tag2", "pop_tag3"],
                                              "top_users": ["your mom", "your mommy", "your mamka"],
-                                             })
+                                                      })
+
+def hot_questions(request):
+    questions_list = []
+    for i in range(100):
+        questions_list.append({"title": "Title" + str(i + 1), "text": "bla " * 30 + "...",
+                               "tags": ["tag1", "tag2", "tag3"],
+                               "rating": random.randint(0, 100), "answers": random.randint(3, 100)})
+
+    paginator = Paginator(questions_list, 5)
+    page = request.GET.get('page')
+
+    try:
+        questions = paginator.page(page)
+    except PageNotAnInteger:
+        # If page is not an integer, deliver first page.
+        questions = paginator.page(1)
+    except EmptyPage:
+        # If page is out of range (e.g. 9999), deliver last page of results.
+        questions = paginator.page(paginator.num_pages)
+
+    return render_to_response('hot_questions.html', {"questions": questions,
+                                             "pop_tags": ["pop_tag1", "pop_tag2", "pop_tag3"],
+                                             "top_users": ["your mom", "your mommy", "your mamka"],
+                                                      })
+
+
 
 
 def new_question_view(request):
@@ -86,7 +112,7 @@ def tag_questions_view(request):
 
     return render_to_response('tag_questions.html', {"questions": questions,
                                              "pop_tags": ["pop_tag1", "pop_tag2", "pop_tag3"],
-                                             "top_users": ["your mom", "your mommy", "your mamka"],
+                                             "top_users": ["User", "Pasha", "Masha"],
                                              })
 
 

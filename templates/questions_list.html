@@ -1,14 +1,9 @@
 {% extends "base.html" %}
 {% load static %}
 {% block container %}
-    <div class="row questions">
-        <a href="#">
-            <h4 class="navbar-text alert-link">New Questions</h4>
-        </a>
-        <a href="#">
-            <h4 class="navbar-text card-link">Hot Questions</h4>
-        </a>
-    </div>
+    {% block tabs %}
+
+    {% endblock %}
     <div class="row">
         <div class="col-8">
             {% if questions %}
