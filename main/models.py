@@ -3,8 +3,8 @@ from django.contrib.auth.models import AbstractUser
 
 
 class User(AbstractUser):
-    nickname = models.CharField(max_length=64, null=False)
-    avatar = models.ImageField(upload_to='static/user_avatars', null=False)
+    avatar = models.ImageField(upload_to='static/user_avatars', null=False,
+                               default='static/user_avatars/User_Avatar.png')
 
 
 class VoteMixIn(models.Model):
@@ -24,7 +24,7 @@ class Tag(models.Model):
     title = models.CharField(max_length=32, null=False)
 
 
-class Quest(VoteMixIn):
+class Question(VoteMixIn):
     title = models.CharField(max_length=96, null=False)
     text = models.TextField(max_length=960, null=False)
     author = models.ForeignKey(User, on_delete=models.SET_NULL, null=True)
@@ -35,5 +35,5 @@ class Quest(VoteMixIn):
 class Answer(VoteMixIn):
     text = models.TextField(max_length=960)
     author = models.ForeignKey(User, on_delete=models.SET_NULL, null=True, related_name='author')
-    question = models.ForeignKey(Quest, on_delete=models.CASCADE, related_name='question')
+    quest = models.ForeignKey(Question, on_delete=models.CASCADE, related_name='question')
     date = models.DateField(auto_now=True)

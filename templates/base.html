@@ -34,32 +34,32 @@
             </form>
             <div class="col-4">
                 <ul class="nav justify-content-end">
-                    {% if 1 == 1 %}
+                    {% if user.is_authenticated %}
                         <li>
                             <div class="dropdown show user-name">
                                 <a id="user-name" class="dropdown-toggle navbar-text" href="#"
                                    id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true"
-                                   aria-expanded="false"> UserName
+                                   aria-expanded="false"> {{user.username}}
                                 </a>
 
                                 <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
                                     <a class="dropdown-item" href="/new_question/">Ask!</a>
                                     <a class="dropdown-item" href="/settings">Settings</a>
-                                    <a class="dropdown-item" href="#">Log out</a>
+                                    <a class="dropdown-item" href="/logout">Log out</a>
                                 </div>
                             </div>
                         </li>
                         <li>
                             <div class="inset">
-                                <img src="{% static "user_avatars/User_Avatar.png" %}"/>
+                                <img src= '{{ user.avatar }}'/>
                             </div>
                         </li>
                     {% else %}
                         <li>
-                            <a class="btn btn-secondary-outline" href="#" role="button">Log in</a>
+                            <a class="btn btn-secondary-outline" href="/signin" role="button">Log in</a>
                         </li>
                         <li>
-                            <a class="btn btn-secondary-outline" href="#" role="button">Sign up</a>
+                            <a class="btn btn-secondary-outline" href="/signup" role="button">Sign up</a>
                         </li>
                     {% endif %}
                 </ul>
