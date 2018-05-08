@@ -8,20 +8,24 @@ class User(AbstractUser):
 
 
 class VoteMixIn(models.Model):
-    positive_votes = models.ManyToManyField(User, related_name='likes')
-    negative_votes = models.ManyToManyField(User, related_name='dislikes')
+    votes = models.ManyToManyField(User, related_name='likes', null=True)
+    # negative_votes = models.ManyToManyField(User, related_name='dislikes', null=True)
+    value = models.NullBooleanField(null=True)
 
     def like(self, user):
-        self.negative_votes.remove(user)
-        self.positive_votes.add(user)
-
-    def dislike(self, user):
-        self.positive_votes.remove(user)
-        self.negative_votes.add(user)
+        self.value = True
+        self.votes.add(user)
+    #
+    # def dislike(self, user):
+    #     self.positive_votes.remove(user)
+    #     self.negative_votes.add(user)
 
 
 class Tag(models.Model):
     title = models.CharField(max_length=32, null=False)
+
+    def __str__(self):
+        return self.title
 
 
 class Question(VoteMixIn):

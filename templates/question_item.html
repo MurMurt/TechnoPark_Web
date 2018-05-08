@@ -12,27 +12,26 @@
                 <div class="btn-group btn-group-sm" role="group" aria-label="Basic example">
                     <button type="button" class="btn btn-outline-danger">-</button>
                     <button type="button"
-                            class="btn btn-outline-info disabled">{{ question.rating }}</button>
+                            class="btn btn-outline-info disabled">{{ question.votes|length }}</button>
                     <button type="button" class="btn btn-outline-success">+</button>
                 </div>
             </div>
         </div>
         <div class="question-container col-10 offset-2">
-            <a href="#">
-                <h5 class="card-title">{{ question.title }}</h5>
+            <a href="{% url 'main:question' question.id %}">
+                <h5 class="card-title">{{ question.title|truncatechars:50 }}</h5>
             </a>
             <div class="row">
                 <div class="card-text">
-                    {{ question.text }}
+                    <p>
+                        {{ question.text|truncatechars:120}}
+                    </p>
                 </div>
             </div>
             <div class="row">
-                <div class="answers d-inline">
-                    <a href="#">answers({{ question.answers }})</a></li>
-                </div>
-                <div class="d-inline">
+                <div class="d-inline" style="font-size: medium">
                     Tags:
-                    {% for tag in question.tags %}
+                    {% for tag in question.tags.all|slice:":4" %}
                         <a class="tag" href="#" role="">{{ tag }}</a>
                     {% endfor %}
                 </div>
